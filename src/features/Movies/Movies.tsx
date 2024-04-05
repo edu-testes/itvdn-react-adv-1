@@ -1,13 +1,33 @@
 import { Movie } from "../../reducers/movies"
+import { connect } from "react-redux" ;
+import { RootState } from "../../store";
+
 
 interface MoviesProps {
   movies:  Movie[]
 }
 
-export function Movies({movies}: MoviesProps) {
+function Movies({movies}: MoviesProps) {
   return (
     <div>
-      <p>Movies</p>
+      <ul>
+        {movies.map((m) => (
+          <li key={m.id}>
+            <div>{m.title}</div>
+            <div>{m.overview}</div>
+            <div>{m.popularity}</div>
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }
+
+const mapStateToProps = (state: RootState ) =>  ({
+  movies: state.movies.top
+});
+
+const connector = connect(mapStateToProps);
+
+export default connector(Movies);
+
