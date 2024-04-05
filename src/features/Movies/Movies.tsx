@@ -10,10 +10,11 @@ interface MoviesProps {
 function Movies({ movies }: MoviesProps) {
   return (
     <section>
-      <div>
+      <div className="Movies-list">
         {movies.map((m) => (
           <MovieCard
             key={m.id}
+            id={m.id}
             title={m.title}
             overview={m.overview}
             popularity={m.popularity}
